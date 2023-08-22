@@ -46,7 +46,7 @@ export default function Navbar() {
           textAlign={"center"}
           fontFamily={"heading"}
           color={"gray.800"}
-          mr={30}
+          mr={60}
         >
           Logo
         </Text>
@@ -60,12 +60,14 @@ export default function Navbar() {
           fontSize={"sm"}
           fontWeight={600}
           color={"white"}
-          bg={"pink.400"}
+          bg={"teal.300"}
+          borderRadius={"25px"}
+          width={"max-content"}
           href={"#"}
           _hover={{
             bg: "pink.300",
           }}
-          ml={5}
+          ml={1}
         >
           Buy Now{" "}
         </Button>
@@ -93,12 +95,13 @@ const DesktopNav = () => {
                 as="a"
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={"lg"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
-                  backgroundColor: "pink.400",
+                  backgroundColor: "teal.300",
+                  borderRadius: "20px",
                   color: "white",
                 }}
               >

@@ -23,19 +23,19 @@ import { keyframes } from "@emotion/react";
 
 const pulse = keyframes`
   from { transform: scale(1); }
-  to { transform: scale(1.2); }
+  to { transform: scale(2); }
 `;
 
 const AnimatedIcon = chakra(Icon, {
   baseStyle: {
     cursor: "pointer",
-    borderRadius: "50%",
-    p: "2px",
-    transition: "all .2s ease-in-out",
+    borderRadius: "100%",
+    p: "1px",
+    transition: "all .5s ease-in-out",
     _hover: {
       animation: `${pulse} .5s infinite alternate`,
       borderColor: "currentColor",
-      borderWidth: "2px",
+      borderWidth: "1px",
       borderStyle: "solid",
     },
   },
@@ -46,7 +46,7 @@ export default function TopHeader() {
     <Flex
       bg={"teal.300"}
       color={"white.600"}
-      minH={"40px"}
+      minH={"60px"}
       py={{ base: 2 }}
       px={{ base: 4 }}
       align={"center"}
@@ -69,13 +69,11 @@ export default function TopHeader() {
           </Link>
         </HStack>
         <HStack spacing={5} ml={15}>
-          <Link href="https://www.facebook.com" isExternal>
-            <AnimatedIcon as={FaFacebookF} />
-          </Link>
-          <AnimatedIcon as={FaTwitter} />
-          <AnimatedIcon as={FaInstagram} />
+          <AnimatedIcon as={FaFacebookF} color="#1877F2" />
+          <AnimatedIcon as={FaTwitter} color="#1DA1F2" />
+          <AnimatedIcon as={FaInstagram} color="#C13584" />
           <Link href="https://www.google.com" isExternal>
-            <AnimatedIcon as={FaGooglePlusG} />
+            <AnimatedIcon as={FaGooglePlusG} color="red" />
           </Link>
         </HStack>
       </Center>
