@@ -36,7 +36,7 @@ function PriceWrapper(props: Props) {
   );
 }
 
-export default function ThreeTierPricing() {
+export default function PriceService() {
   return (
     <Box py={12}>
       <VStack spacing={2} textAlign="center">

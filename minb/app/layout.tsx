@@ -9,6 +9,9 @@ import PriceService from "@/components/PriceService";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import OurServiceSection from "@/components/OurServiceSection";
 import ProductSection from "@/components/ProductSection";
+import FoundationSection from "@/components/FoundationSection";
+import Footer from "@/components/Footer";
+import BlogSection from "@/components/BlogSection";
 
 export default function RootLayout({
   children,
@@ -26,8 +29,11 @@ export default function RootLayout({
           <OurServiceSection />
           <ProductSection />
           <PriceService />
+          <BlogSection />
           <TestimonialsSection />
+          <FoundationSection />
           {children}
+          <Footer />
         </ChakraProvider>
       </body>
     </html>
