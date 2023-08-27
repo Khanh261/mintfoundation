@@ -15,9 +15,9 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaFacebookF,
-  FaTwitter,
+  FaTiktok,
   FaInstagram,
-  FaGooglePlusG,
+  FaYoutube,
 } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
 
@@ -56,27 +56,34 @@ export default function TopHeader() {
       <Center>
         <HStack spacing={5} mr={15}>
           <Icon as={FaClock} />
-          <Text>Opening Hours - 9am to 9pm</Text>
+          <Text>Mở cửa vào lúc - 09:00 - 21:00</Text>
         </HStack>
         <HStack spacing={5} mx={15}>
           <Icon as={FaEnvelope} />
-          <Link>
-            <Text>info@example.com</Text>
+          <Link href="mailto:minhkelly.trinh@gmail.com">
+            <Text>minhkelly.trinh@gmail.com</Text>
           </Link>
           <Icon as={FaPhoneAlt} />
-          <Link>
-            <Text>+1234567890</Text>
+          <Link href="tel:0388084099">
+            <Text>038 808 4099</Text>
           </Link>
         </HStack>
         <HStack spacing={5} ml={15}>
-          <AnimatedIcon as={FaFacebookF} color="#1877F2" />
-          <AnimatedIcon as={FaTwitter} color="#1DA1F2" />
-          <AnimatedIcon as={FaInstagram} color="#C13584" />
-          <Link href="https://www.google.com" isExternal>
-            <AnimatedIcon as={FaGooglePlusG} color="red" />
+          <Link href="https://www.facebook.com/mint.foundation" isExternal>
+            <AnimatedIcon as={FaFacebookF} color="gray.600" />
+          </Link>
+          <Link href="https://www.tiktok.com/@mint.plus.foundation" isExternal>
+            <AnimatedIcon as={FaTiktok} color="gray.600" />
+          </Link>
+          <Link href="https://www.instagram.com/mint.foundation/" isExternal>
+            <AnimatedIcon as={FaInstagram} color="gray.600" />
+          </Link>
+          <Link href="https://www.youtube.com/@MinTFoundation" isExternal>
+            <AnimatedIcon as={FaYoutube} color="gray.600" />
           </Link>
         </HStack>
       </Center>
+
       <Spacer />
     </Flex>
   );

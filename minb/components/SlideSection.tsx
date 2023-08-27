@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Box,
@@ -20,49 +18,37 @@ const settings = {
   fade: true,
   infinite: true,
   autoplay: true,
-  speed: 500,
-  autoplaySpeed: 1000,
+  speed: 1000,
+  autoplaySpeed: 5000,
   slidesToShow: 1,
   slidesToScroll: 1,
 };
 
 export default function SlideSection() {
-  // change the state
   const [slider, setSlider] = React.useState<Slider | null>(null);
 
-  // buttons as the screen size changes
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "40px" });
 
   const cards = [
     {
-      title: "Welcome to our Spa",
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image:
-        "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/08/slide6.png",
+      image: "/homepage/slide06.jpg",
     },
     {
-      title: "Feel heathy in Spa",
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image:
-        "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/08/slide7.png",
+      image: "/homepage/slide05.jpg",
     },
     {
-      title: "Body with wellness Spa",
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image:
-        "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2022/09/slide1.png",
+      image: "/homepage/slide08.jpg",
     },
   ];
 
   return (
     <Box
       position={"relative"}
-      height={"600px"}
+      height={"90vh"}
       width={"full"}
       overflow={"hidden"}
     >
-      {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
         type="text/css"
@@ -73,7 +59,6 @@ export default function SlideSection() {
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
-      {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
         variant="ghost"
@@ -86,7 +71,6 @@ export default function SlideSection() {
       >
         <BiLeftArrowAlt size="40px" />
       </IconButton>
-      {/* Right Icon */}
       <IconButton
         aria-label="right-arrow"
         variant="ghost"
@@ -99,48 +83,27 @@ export default function SlideSection() {
       >
         <BiRightArrowAlt size="40px" />
       </IconButton>
-      {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={"6xl"}
+            height={"90vh"}
             position="relative"
-            backgroundPosition="center"
+            backgroundPosition="top center"
             backgroundRepeat="no-repeat"
-            backgroundSize="cover"
+            backgroundSize="100% 100%"
             backgroundImage={`url(${card.image})`}
           >
-            {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="600px" position="relative">
+            <Container size="container.lg" height="100%" position="relative">
               <Stack
                 spacing={6}
                 w={"full"}
                 maxW={"lg"}
                 position="absolute"
-                top="50%"
-                transform="translate(0, -50%)"
-              >
-                <Heading
-                  fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
-                  color={"white"}
-                >
-                  {card.title}
-                </Heading>
-                <Text fontSize={{ base: "md", lg: "lg" }} color="white">
-                  {card.text}
-                </Text>
-                <Button
-                  //make sky color
-                  colorScheme="teal"
-                  cursor={"pointer"}
-                  borderRadius={"25px"}
-                  px={4}
-                  py={2}
-                >
-                  Book an Appointment
-                </Button>
-              </Stack>
+                top="60%"
+                left="50%"
+                transform="translate(-50%, -50%)"
+              ></Stack>
             </Container>
           </Box>
         ))}

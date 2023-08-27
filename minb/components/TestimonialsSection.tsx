@@ -68,11 +68,7 @@ const TestimonialText = (props: Props) => {
   const { children } = props;
 
   return (
-    <Text
-      textAlign={"center"}
-      color={useColorModeValue("gray.600", "gray.400")}
-      fontSize={"sm"}
-    >
+    <Text textAlign={"center"} color={"black"} fontSize={"sm"}>
       {children}
     </Text>
   );
@@ -91,8 +87,10 @@ const TestimonialAvatar = ({
     <Flex align={"center"} mt={8} direction={"column"}>
       <Avatar src={src} mb={2} />
       <Stack spacing={-1} align={"center"}>
-        <Text fontWeight={600}>{name}</Text>
-        <Text fontSize={"sm"} color={useColorModeValue("gray.600", "gray.400")}>
+        <Text fontWeight={600} color={"white"}>
+          {name}
+        </Text>
+        <Text fontSize={"sm"} color={"white"}>
           {title}
         </Text>
       </Stack>
@@ -104,17 +102,14 @@ export default function TestimonialsSection() {
   return (
     <Box
       bg={useColorModeValue("gray.200", "gray.600")}
-      backgroundImage="https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2022/09/slide1.png"
+      backgroundImage="/homepage/testimonial.jpg"
       backgroundPosition="absolute"
       backgroundSize="cover"
       backgroundColor={"rgba(0,0,0,0.5)"}
     >
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
-          <Heading color={"white"}>Feedback</Heading>
-          <Text color={"white"}>
-            We have been working with clients around the world
-          </Text>
+          <Heading color={"white"}>Ý kiến của khách hàng</Heading>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}

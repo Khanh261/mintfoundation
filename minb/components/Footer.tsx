@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Flex,
@@ -21,7 +22,10 @@ import {
   faTwitter,
   faInstagram,
   faGooglePlus,
+  faTiktok,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { FaTiktok } from "react-icons/fa";
 
 interface Post {
   title: string;
@@ -77,40 +81,46 @@ export default function Footer() {
       <Flex justify="center">
         <Box textAlign="center" mx={20}>
           <Heading size="md" mb={5}>
-            About Us
+            Thông tin về chúng tôi{" "}
           </Heading>
-          <Image src="/homepage/spawp-logo.png" alt="Logo" mb={5} mx="auto" />
+          <Image
+            w={20}
+            position={"relative"}
+            src="/homepage/logo.jpg"
+            alt="Logo"
+            mb={5}
+            mx="auto"
+          />
           <Text maxW="270px" mx="auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            MorbiasdasdasdSda aliquam.
+            Bạn có thể liên lạc trực tiếp với chúng tôi qua các đia chỉ dưới
           </Text>
 
           <Flex justify="center" mt={5}>
-            <a href="https://www.facebook.com/your-page">
+            <a href="https://www.facebook.com/TrinhMinhBeautySpa">
               <Box mx={2}>
                 <FontAwesomeIcon icon={faFacebook} size="2x" />
               </Box>
             </a>
-            <a href="https://twitter.com/your-page">
+            <a href="https://www.tiktok.com/@mint.plus.foundation">
               <Box mx={2}>
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
+                <FontAwesomeIcon icon={faTiktok} size="2x" />
               </Box>
             </a>
-            <a href="https://www.instagram.com/your-page">
+            <a href="https://www.instagram.com/mint.foundation">
               <Box mx={2}>
                 <FontAwesomeIcon icon={faInstagram} size="2x" />
               </Box>
             </a>
-            <a href="https://plus.google.com/your-page">
+            <a href="https://www.youtube.com/@MinTFoundation">
               <Box mx={2}>
-                <FontAwesomeIcon icon={faGooglePlus} size="2x" />
+                <FontAwesomeIcon icon={faYoutube} size="2x" />
               </Box>
             </a>
           </Flex>
         </Box>
         <Box textAlign="center" mx={20}>
           <Heading size="md" mb={5}>
-            Products
+            Sản Phẩm
           </Heading>
           {products.map((product) => (
             <Flex key={product.name} align="center" mb={5} justify="center">
@@ -129,41 +139,34 @@ export default function Footer() {
             </Flex>
           ))}
         </Box>
-        <Box bg="teal.400" color="white" p={10}>
-          <Box textAlign="center" mx={20}>
-            <Heading size="md" mb={5}>
-              Get In Touch
-            </Heading>
-            <Text mb={5}>Address :</Text>
+        <Box textAlign="center" mx={20}>
+          <Heading size="md" mb={5}>
+            Thông tin liên hệ
+          </Heading>
+          <Text mb={5}>Address :</Text>
 
-            <Flex justify="center">
-              {/* Replace the following URLs with the URLs to your contact information */}
-              <a href="tel:555-123-4567">
-                <Box mx={2}>
-                  <FontAwesomeIcon icon={faPhone} size="2x" />
-                </Box>
-              </a>
-              <a href="mailto:info@example.com">
-                <Box mx={2}>
-                  <FontAwesomeIcon icon={faEnvelope} size="2x" />
-                </Box>
-              </a>
-              <a href="https://www.example.com">
-                <Box mx={2}>
-                  <FontAwesomeIcon icon={faGlobe} size="2x" />
-                </Box>
-              </a>
-              <a href="https://goo.gl/maps/12345">
-                <Box mx={2}>
-                  <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" />
-                </Box>
-              </a>
-            </Flex>
-          </Box>
+          <Flex justify="center">
+            <a href="tel:0388084099">
+              <Box mx={2}>
+                <FontAwesomeIcon icon={faPhone} size="2x" />
+              </Box>
+            </a>
+
+            <a href="mailto:minhkelly.trinh@gmail.com">
+              <Box mx={2}>
+                <FontAwesomeIcon icon={faEnvelope} size="2x" />
+              </Box>
+            </a>
+            <a href="https://www.google.com/maps/place/MinT+-+D%C6%B0%E1%BB%A1ng+sinh+Ecopark/@20.9480019,105.9339922,17z/data=!3m1!4b1!4m6!3m5!1s0x3135afc3c825f93b:0x5177a91908a58435!8m2!3d20.9479969!4d105.9365725!16s%2Fg%2F11t9qyb60f?hl=vi-VN&entry=tts&shorturl=1">
+              <Box mx={2}>
+                <FontAwesomeIcon icon={faGlobe} size="2x" />
+              </Box>
+            </a>
+          </Flex>
         </Box>
       </Flex>
       <Text mt={10} textAlign="center">
-        ©2023 Copyright by MinhSpa Company. All rights reserved.
+        ©2023 Copyright by MinT Foudation Company. All rights reserved.
       </Text>
       {/* Social media icons */}
     </Box>

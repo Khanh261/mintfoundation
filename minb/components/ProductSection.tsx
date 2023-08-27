@@ -72,7 +72,7 @@ function Product({ imageSrc, altText, price, salePrice }: ProductProps) {
           <Text>${price}</Text>
         )}
       </Flex>
-      <Button mt={2} colorScheme="red">
+      <Button mt={2} colorScheme="teal">
         Add to cart
       </Button>
     </Box>

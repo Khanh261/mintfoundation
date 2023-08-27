@@ -16,41 +16,15 @@ const experts: Expert[] = [
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting.",
   },
-  {
-    name: "Lorenzo",
-    title: "Hairstylist",
-    image:
-      "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/team4.jpg",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting.",
-  },
-  {
-    name: "Eleonora",
-    title: "Manicurist",
-    image:
-      "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/team2.jpg",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting.",
-  },
-  {
-    name: "Brielle",
-    title: "Salon Manager",
-    image:
-      "https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/team3.jpg",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting.",
-  },
 ];
 
 export default function FoundationSection() {
   return (
     <Box bg="white" p={10}>
       <Heading mb={10} textAlign={"center"}>
-        Our Professional Experts
+        Nhà sáng lập
       </Heading>
-      <Text mb={10} textAlign={"center"}>
-        Founder of this spa
-      </Text>
+
       <Flex justify="space-between">
         {experts.map((expert) => (
           <Box

@@ -41,7 +41,7 @@ export default function PriceService() {
     <Box py={12}>
       <VStack spacing={2} textAlign="center">
         <Heading as="h1" fontSize="4xl">
-          Plans that fit your need
+          Dịch vụ phổ biến của MinT Health Spa
         </Heading>
         <Text fontSize="lg" color={"gray.500"}>
           Start with 14-day free trial. No credit card needed. Cancel at
@@ -92,7 +92,7 @@ export default function PriceService() {
               </ListItem>
             </List>
             <Box w="80%" pt={7}>
-              <Button w="full" colorScheme="red" variant="outline">
+              <Button w="full" colorScheme="teal" variant="outline">
                 Book Now{" "}
               </Button>
             </Box>
@@ -110,7 +110,7 @@ export default function PriceService() {
             >
               <Text
                 textTransform="uppercase"
-                bg={useColorModeValue("red.300", "red.700")}
+                bg={useColorModeValue("teal.300", "teal.700")}
                 px={3}
                 py={1}
                 color={useColorModeValue("gray.900", "gray.300")}
@@ -165,7 +165,7 @@ export default function PriceService() {
                 </ListItem>
               </List>
               <Box w="80%" pt={7}>
-                <Button w="full" colorScheme="red">
+                <Button w="full" colorScheme="teal">
                   Book Now{" "}
                 </Button>
               </Box>
@@ -209,7 +209,7 @@ export default function PriceService() {
               </ListItem>
             </List>
             <Box w="80%" pt={7}>
-              <Button w="full" colorScheme="red" variant="outline">
+              <Button w="full" colorScheme="teal" variant="outline">
                 Book Now
               </Button>
             </Box>

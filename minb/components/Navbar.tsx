@@ -5,6 +5,7 @@ import {
   Flex,
   Spacer,
   Text,
+  Image,
   IconButton,
   Button,
   Center,
@@ -41,16 +42,10 @@ export default function Navbar() {
         borderColor={"gray.200"}
         align={"center"}
         justifyContent={"center"}
+        position="sticky"
+        top="0"
+        zIndex={1000}
       >
-        <Text
-          textAlign={"center"}
-          fontFamily={"heading"}
-          color={"gray.800"}
-          mr={60}
-        >
-          Logo
-        </Text>
-
         <Flex display={{ base: "none", md: "flex" }}>
           <DesktopNav />
         </Flex>
@@ -69,7 +64,7 @@ export default function Navbar() {
           }}
           ml={1}
         >
-          Buy Now{" "}
+          Book Now{" "}
         </Button>
       </Flex>
 
@@ -86,7 +81,9 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+      <Image src="/homepage/logo.jpg" w={20} alt="Description of image" />
+
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
@@ -162,6 +159,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           justify={"flex-end"}
           align={"center"}
           flex={1}
+          justifyContent={"space-between"} // Align content in a single line
         >
           <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
@@ -275,6 +273,9 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "#",
       },
     ],
+  },
+  {
+    label: "Albums",
   },
   {
     label: "Services",

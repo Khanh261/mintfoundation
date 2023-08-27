@@ -7,39 +7,44 @@ import {
   Container,
   Image,
   Badge,
+  Button,
 } from "@chakra-ui/react";
 
 export default function OurServiceSection() {
   return (
-    <Box bgGradient="white">
+    <Box bgGradient="white" mt={20}>
       <Container maxW="container.xl" py={16}>
         <Stack spacing={8} align="center" textAlign="center">
-          <Heading color="black.300">Our Services</Heading>
+          <Heading color="black.300">Cửa hàng của chúng tôi</Heading>
+          <Text color="black.200">
+            Dưới đây là toàn bộ các cửa hàng thuộc tổ hợp MinT Foundation
+          </Text>
           <Flex justify="center">
             <Service
-              imageSrc="https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/service4.jpg"
+              imageSrc="/homepage/service1.jpg"
               altText="Flower"
-              price={30}
+              serviceTitle="Mint Spa"
+              buttonText="MinT - Dưỡng Sinh Ecopark"
             />
             <Service
-              imageSrc="https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/service3.jpg"
+              imageSrc="/homepage/logo.jpg"
               altText="Coffee"
-              price={30}
+              serviceTitle="Body Cleanse"
+              buttonText="Trinh Minh Beauty Academy"
             />
             <Service
-              imageSrc="https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/service2.jpg"
+              imageSrc="/homepage/service4.jpg"
               altText="Gift"
-              price={30}
+              serviceTitle="Spa Package"
+              buttonText="Bếp nhà Nem - Nầm bò nướng Ecopark"
             />
             <Service
-              imageSrc="https://www.britetechs.com/demo/themes/spawp-pro/wp-content/uploads/2021/03/service1.jpg"
+              imageSrc="/homepage/service3.jpg"
               altText="Cat"
-              price={30}
+              serviceTitle="Healthcare"
+              buttonText="Mint Bistro"
             />
           </Flex>
-          <Text color="black.200">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </Text>
         </Stack>
       </Container>
     </Box>
@@ -49,12 +54,18 @@ export default function OurServiceSection() {
 interface ServiceProps {
   imageSrc: string;
   altText: string;
-  price: number;
+  serviceTitle: string;
+  buttonText: string; // Add a new prop for the button text
 }
 
-function Service({ imageSrc, altText, price }: ServiceProps) {
+function Service({
+  imageSrc,
+  altText,
+  serviceTitle,
+  buttonText,
+}: ServiceProps) {
   return (
-    <Box position="relative" mx={4}>
+    <Box position="relative" mx={4} textAlign="center">
       <Image src={imageSrc} alt={altText} boxSize={60} rounded="full" />
       <Badge
         position="absolute"
@@ -64,9 +75,15 @@ function Service({ imageSrc, altText, price }: ServiceProps) {
         color="white"
         rounded="full"
         px={2}
+      ></Badge>
+      <Button
+        mt={2}
+        colorScheme="teal"
+        size="sm"
+        onClick={() => alert(buttonText)}
       >
-        ${price}
-      </Badge>
+        {buttonText}
+      </Button>
     </Box>
   );
 }

@@ -12,6 +12,7 @@ import ProductSection from "@/components/ProductSection";
 import FoundationSection from "@/components/FoundationSection";
 import Footer from "@/components/Footer";
 import BlogSection from "@/components/BlogSection";
+import GallerySection from "@/components/GallarySection";
 
 export default function RootLayout({
   children,
@@ -27,7 +28,8 @@ export default function RootLayout({
           <Navbar />
           <SlideSection />
           <OurServiceSection />
-          <ProductSection />
+          {/* <ProductSection /> */}
+          <GallerySection />
           <PriceService />
           <BlogSection />
           <TestimonialsSection />
