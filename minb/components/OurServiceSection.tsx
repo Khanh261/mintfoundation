@@ -15,34 +15,39 @@ export default function OurServiceSection() {
     <Box bgGradient="white" mt={20}>
       <Container maxW="container.xl" py={16}>
         <Stack spacing={8} align="center" textAlign="center">
-          <Heading color="black.300">Cửa hàng của chúng tôi</Heading>
+          <Heading color="black.300">Our Services</Heading>
           <Text color="black.200">
-            Dưới đây là toàn bộ các cửa hàng thuộc tổ hợp MinT Foundation
+            Here are all the stores belonging to the MinT Foundation complex{" "}
           </Text>
           <Flex justify="center">
             <Service
               imageSrc="/homepage/service1.jpg"
               altText="Flower"
               serviceTitle="Mint Spa"
-              buttonText="MinT - Dưỡng Sinh Ecopark"
+              buttonText="MinT Health Spa"
+              buttonUrl="https://www.facebook.com/TrinhMinhBeautySpa"
             />
             <Service
               imageSrc="/homepage/logo.jpg"
               altText="Coffee"
               serviceTitle="Body Cleanse"
               buttonText="Trinh Minh Beauty Academy"
+              buttonUrl="https://www.facebook.com/trinhminhbeautyacademy"
             />
-            <Service
-              imageSrc="/homepage/service4.jpg"
-              altText="Gift"
-              serviceTitle="Spa Package"
-              buttonText="Bếp nhà Nem - Nầm bò nướng Ecopark"
-            />
+
             <Service
               imageSrc="/homepage/service3.jpg"
               altText="Cat"
               serviceTitle="Healthcare"
               buttonText="Mint Bistro"
+              buttonUrl="https://www.facebook.com/mint.kafe.club"
+            />
+            <Service
+              imageSrc="/homepage/service4.jpg"
+              altText="Gift"
+              serviceTitle="Spa Package"
+              buttonText="Bếp nhà Nem"
+              buttonUrl="https://www.facebook.com/yeubepnhanem"
             />
           </Flex>
         </Stack>
@@ -55,7 +60,8 @@ interface ServiceProps {
   imageSrc: string;
   altText: string;
   serviceTitle: string;
-  buttonText: string; // Add a new prop for the button text
+  buttonText: string;
+  buttonUrl: string; // Add a new prop for the button URL
 }
 
 function Service({
@@ -63,6 +69,7 @@ function Service({
   altText,
   serviceTitle,
   buttonText,
+  buttonUrl,
 }: ServiceProps) {
   return (
     <Box position="relative" mx={4} textAlign="center">
@@ -80,7 +87,7 @@ function Service({
         mt={2}
         colorScheme="teal"
         size="sm"
-        onClick={() => alert(buttonText)}
+        onClick={() => (window.location.href = buttonUrl)}
       >
         {buttonText}
       </Button>

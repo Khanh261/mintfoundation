@@ -79,20 +79,18 @@ export default function Footer() {
   return (
     <Box bg="teal.400" color="white" p={5} mt={20}>
       <Flex justify="center">
-        <Box textAlign="center" mx={20}>
+        <Box textAlign="center" mx={20} pr={20}>
           <Heading size="md" mb={5}>
-            Thông tin về chúng tôi{" "}
+            About us{" "}
           </Heading>
-          <Image
-            w={20}
-            position={"relative"}
-            src="/homepage/logo.jpg"
-            alt="Logo"
-            mb={5}
-            mx="auto"
-          />
-          <Text maxW="270px" mx="auto">
-            Bạn có thể liên lạc trực tiếp với chúng tôi qua các đia chỉ dưới
+
+          <Text maxW="800px" mx="auto">
+            MinT + là một tổ hợp bao gồm MinT Kafe’ & Club bao trọn không gian
+            tầng 1, MinT Beauty Academy dành cho khách hàng phun xăm và làm đẹp
+            spa . Minh tạo ra MinT+ với mong muốn rằng mọi người khi tới có thể
+            cùng với những chuyên gia mới, nơi bạn có thể làm đẹp, có thể nghỉ
+            ngơi, có thể chill, thậm chí có thể thức tới sáng cùng mình nơi với
+            tất cả tâm huyết của mình, xây một cách chậm dãi, từ tốn, vững chắc.
           </Text>
 
           <Flex justify="center" mt={5}>
@@ -118,32 +116,11 @@ export default function Footer() {
             </a>
           </Flex>
         </Box>
+
         <Box textAlign="center" mx={20}>
           <Heading size="md" mb={5}>
-            Sản Phẩm
+            Address:
           </Heading>
-          {products.map((product) => (
-            <Flex key={product.name} align="center" mb={5} justify="center">
-              <Image
-                src={product.image}
-                alt={product.name}
-                w={10}
-                h={10}
-                mr={5}
-                cursor={"pointer"}
-              />
-              <Box>
-                <Text fontWeight="bold">{product.name}</Text>
-                <Text>{product.price}</Text>
-              </Box>
-            </Flex>
-          ))}
-        </Box>
-        <Box textAlign="center" mx={20}>
-          <Heading size="md" mb={5}>
-            Thông tin liên hệ
-          </Heading>
-          <Text mb={5}>Address :</Text>
 
           <Flex justify="center">
             <a href="tel:0388084099">
@@ -166,7 +143,7 @@ export default function Footer() {
         </Box>
       </Flex>
       <Text mt={10} textAlign="center">
-        ©2023 Copyright by MinT Foudation Company. All rights reserved.
+        ©2023 Copyright by MinT Company. All rights reserved.
       </Text>
       {/* Social media icons */}
     </Box>

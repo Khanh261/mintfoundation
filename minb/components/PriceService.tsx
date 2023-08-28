@@ -24,6 +24,7 @@ function PriceWrapper(props: Props) {
 
   return (
     <Box
+      width={330}
       mb={4}
       shadow="base"
       borderWidth="1px"
@@ -43,10 +44,6 @@ export default function PriceService() {
         <Heading as="h1" fontSize="4xl">
           Dịch vụ phổ biến của MinT Health Spa
         </Heading>
-        <Text fontSize="lg" color={"gray.500"}>
-          Start with 14-day free trial. No credit card needed. Cancel at
-          anytime.
-        </Text>
       </VStack>
       <Stack
         direction={{ base: "column", md: "row" }}
@@ -57,18 +54,12 @@ export default function PriceService() {
       >
         <PriceWrapper>
           <Box py={4} px={12}>
-            <Text fontWeight="500" fontSize="2xl">
-              Hobby
+            <Text fontWeight="500" fontSize={24}>
+              Gội Thảo Dược
             </Text>
             <HStack justifyContent="center">
-              <Text fontSize="3xl" fontWeight="600">
-                $
-              </Text>
-              <Text fontSize="5xl" fontWeight="900">
-                79
-              </Text>
-              <Text fontSize="3xl" color="gray.500">
-                /month
+              <Text fontSize={14} fontWeight="500">
+                Thời gian 50 phút - 80.000đ
               </Text>
             </HStack>
           </Box>
@@ -80,20 +71,39 @@ export default function PriceService() {
             <List spacing={3} textAlign="start" px={12}>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                unlimited build minutes
+                Thả lỏng cơ thể với thảm điện sông ngải cứu{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                Lorem, ipsum dolor.
+                Làm sạch da đầu với dầu gội thảo dược chuyên dụng
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                5TB Lorem, ipsum dolor.
+                Dùng tinh dầu Gừng Phụ Thảo massage làm giảm căng thẳng mệt mỏi
+                + Massage cổ vai gáy giúp lưu thông khí huyết giảm căng thảng
+                mệt mỏi{" "}
+              </ListItem>
+
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Sử dụng sữa rửa mặt
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Xả sạch và lau khô tóc
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Dùng khăn ấm lau tinh dầu trên cơ thể
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Sấy tóc
               </ListItem>
             </List>
             <Box w="80%" pt={7}>
               <Button w="full" colorScheme="teal" variant="outline">
-                Book Now{" "}
+                Contact Now{" "}
               </Button>
             </Box>
           </VStack>
@@ -122,18 +132,12 @@ export default function PriceService() {
               </Text>
             </Box>
             <Box py={4} px={12}>
-              <Text fontWeight="500" fontSize="2xl">
-                Growth
+              <Text fontWeight="500" fontSize={24}>
+                Gội Dưỡng Sinh Chuyên Sâu
               </Text>
               <HStack justifyContent="center">
-                <Text fontSize="3xl" fontWeight="600">
-                  $
-                </Text>
-                <Text fontSize="5xl" fontWeight="900">
-                  149
-                </Text>
-                <Text fontSize="3xl" color="gray.500">
-                  /month
+                <Text fontSize={14} fontWeight="500">
+                  Thời gian 80 phút - 200.000đ
                 </Text>
               </HStack>
             </Box>
@@ -145,28 +149,50 @@ export default function PriceService() {
               <List spacing={3} textAlign="start" px={12}>
                 <ListItem>
                   <ListIcon as={FaCheckCircle} color="green.500" />
-                  unlimited build minutes
+                  Khai huyệt lưu thông vùng đầu{" "}
                 </ListItem>
                 <ListItem>
                   <ListIcon as={FaCheckCircle} color="green.500" />
-                  Lorem, ipsum dolor.
+                  Chườm nóng bụng và ử chân gối bằng ngải cứu
                 </ListItem>
                 <ListItem>
                   <ListIcon as={FaCheckCircle} color="green.500" />
-                  5TB Lorem, ipsum dolor.
+                  Làm sách da đầu bằng thảo được chuyên dụng{" "}
                 </ListItem>
                 <ListItem>
                   <ListIcon as={FaCheckCircle} color="green.500" />
-                  5TB Lorem, ipsum dolor.
+                  Dùng tinh dầu Gừng Phụ Thảo massage làm giảm căng thẳng mệt
+                  mỏi + Massage cổ vai gáy giúp lưu thông khí huyết giảm căng
+                  thảng mệt mỏi{" "}
                 </ListItem>
                 <ListItem>
                   <ListIcon as={FaCheckCircle} color="green.500" />
-                  5TB Lorem, ipsum dolor.
+                  Sử dụng đá nóng để xoa dịu thư giản phần lưng
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Dùng sữa rửa mặt làm sạch bụi bẩn trên da
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Xả sạch và lau khô tóc
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Massage cánh tay và bàn tay{" "}
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Dùng khăn lau tinh dầu trên cơ thể{" "}
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Sấy khô tóc
                 </ListItem>
               </List>
               <Box w="80%" pt={7}>
                 <Button w="full" colorScheme="teal">
-                  Book Now{" "}
+                  Contact Now{" "}
                 </Button>
               </Box>
             </VStack>
@@ -174,18 +200,12 @@ export default function PriceService() {
         </PriceWrapper>
         <PriceWrapper>
           <Box py={4} px={12}>
-            <Text fontWeight="500" fontSize="2xl">
-              Scale
+            <Text fontWeight="500" fontSize={24}>
+              Gội Dưỡng Sinh Chuyên Sâu
             </Text>
             <HStack justifyContent="center">
-              <Text fontSize="3xl" fontWeight="600">
-                $
-              </Text>
-              <Text fontSize="5xl" fontWeight="900">
-                349
-              </Text>
-              <Text fontSize="3xl" color="gray.500">
-                /month
+              <Text fontSize="14" fontWeight="500">
+                Thời gian 90 phút - 250.000đ
               </Text>
             </HStack>
           </Box>
@@ -197,20 +217,50 @@ export default function PriceService() {
             <List spacing={3} textAlign="start" px={12}>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                unlimited build minutes
+                Khai huyệt lưu thông vùng đầu{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                Lorem, ipsum dolor.
+                Chườm nóng bụng và ử chân gối bằng ngải cứu
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                5TB Lorem, ipsum dolor.
+                Làm sách da đầu bằng thảo được chuyên dụng{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Dùng tinh dầu Gừng Phụ Thảo massage làm giảm căng thẳng mệt mỏi
+                + Massage cổ vai gáy giúp lưu thông khí huyết giảm căng thảng
+                mệt mỏi{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Sử dụng đá nóng để xoa dịu thư giản phần lưng
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Dùng sữa rửa mặt làm sạch bụi bẩn trên da
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Xả sạch và lau khô tóc
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Massage cánh tay và bàn tay + Khai thông phần huyệt bàn chân
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Dùng khăn lau tinh dầu trên cơ thể{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaCheckCircle} color="green.500" />
+                Sấy khô tóc + Thưởng thức trà MinT' KaFe
               </ListItem>
             </List>
             <Box w="80%" pt={7}>
               <Button w="full" colorScheme="teal" variant="outline">
-                Book Now
+                Contact Now{" "}
               </Button>
             </Box>
           </VStack>

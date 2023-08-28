@@ -29,33 +29,48 @@ const defaultGalleryImages: GalleryImage[] = [
   {
     src: "/homepage/album01.jpg",
     alt: "Album 1",
-    category: "Spa",
+    category: "MinT Beauty Academy",
   },
   {
     src: "/homepage/album04.jpg",
     alt: "Belt 2",
-    category: "Spa",
+    category: "MinT Beauty Academy",
   },
 
   {
     src: "/homepage/album05.jpg",
     alt: "Belt 2",
-    category: "Spa",
+    category: "MinT Beauty Academy",
   },
   {
     src: "/homepage/album06.jpg",
     alt: "Belt 2",
-    category: "Food",
+    category: "MinT Bistro",
   },
   {
     src: "/homepage/album02.jpg",
     alt: "Belt 2",
-    category: "Food",
+    category: "MinT Bistro",
   },
   {
     src: "/homepage/album03.jpg",
     alt: "",
-    category: "Food",
+    category: "MinT Bistro",
+  },
+  {
+    src: "/homepage/album08.jpg",
+    alt: "",
+    category: "MinT Health Spa",
+  },
+  {
+    src: "/homepage/album07.jpg",
+    alt: "",
+    category: "MinT Beauty Academy",
+  },
+  {
+    src: "/homepage/album09.jpg",
+    alt: "",
+    category: "MinT Beauty Academy",
   },
 
   // ...
@@ -67,6 +82,8 @@ export default function GallerySection({
   galleryImages = defaultGalleryImages,
 }: GallerySectionProps) {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [numImages, setNumImages] = useState(6);
+  const [showLess, setShowLess] = useState(false);
 
   const categories = [
     "All",
@@ -75,8 +92,16 @@ export default function GallerySection({
 
   const filteredImages =
     selectedCategory === "All"
-      ? galleryImages
-      : galleryImages.filter((image) => image.category === selectedCategory);
+      ? galleryImages.slice(0, numImages)
+      : galleryImages
+          .filter((image) => image.category === selectedCategory)
+          .slice(0, numImages);
+
+  const totalImages =
+    selectedCategory === "All"
+      ? galleryImages.length
+      : galleryImages.filter((image) => image.category === selectedCategory)
+          .length;
 
   return (
     <Box bg="white" borderTop="10px" borderBottom="10px">
@@ -114,6 +139,32 @@ export default function GallerySection({
             />
           ))}
         </SimpleGrid>
+        {numImages < totalImages && (
+          <Box textAlign="center" mt={4}>
+            <Button
+              backgroundColor={"teal.300"}
+              onClick={() => {
+                setNumImages((prevNum) => prevNum + 6);
+                setShowLess(true);
+              }}
+            >
+              Load More
+            </Button>
+          </Box>
+        )}
+        {showLess && (
+          <Box textAlign="center" mt={4}>
+            <Button
+              backgroundColor={"teal.300"}
+              onClick={() => {
+                setNumImages((prevNum) => Math.max(prevNum - 6, 6));
+                setShowLess(false);
+              }}
+            >
+              Show Less
+            </Button>
+          </Box>
+        )}
       </Container>
     </Box>
   );

@@ -26,6 +26,7 @@ const settings = {
 
 export default function SlideSection() {
   const [slider, setSlider] = React.useState<Slider | null>(null);
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   const top = useBreakpointValue({ base: "90%", md: "50%" });
   const side = useBreakpointValue({ base: "30%", md: "40px" });
@@ -67,9 +68,14 @@ export default function SlideSection() {
         top={top}
         transform={"translate(0%, -50%)"}
         zIndex={2}
-        onClick={() => slider?.slickPrev()}
+        onClick={() => {
+          slider?.slickPrev();
+          setActiveIndex(
+            (prevIndex) => (prevIndex - 1 + cards.length) % cards.length
+          );
+        }}
       >
-        <BiLeftArrowAlt size="40px" />
+        <BiLeftArrowAlt size="40px" color="white" />
       </IconButton>
       <IconButton
         aria-label="right-arrow"
@@ -81,7 +87,7 @@ export default function SlideSection() {
         zIndex={2}
         onClick={() => slider?.slickNext()}
       >
-        <BiRightArrowAlt size="40px" />
+        <BiRightArrowAlt size="40px" color="white" />
       </IconButton>
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (

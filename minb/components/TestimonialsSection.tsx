@@ -117,48 +117,51 @@ export default function TestimonialsSection() {
         >
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
+              <TestimonialHeading>Dịch vụ tuyệt vời</TestimonialHeading>
               <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
+                Trải nghiệm dịch vụ massage cùng vợ ở MinT thấy rất ổn, dịch vụ
+                ở Ecopark mà duy trì chất lượng bền thế này thì quá tốt.
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
               src={
                 "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
               }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
+              name={"Khanh Nguyen"}
+              title={"Customer"}
             />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Intuitive Design</TestimonialHeading>
+              <TestimonialHeading>Dịch vụ tốt</TestimonialHeading>
               <TestimonialText>
-                As a customer, I always want to work with this service
+                Gội đầu dưỡng sinh tại spa MinT tôi thấy rất thích và thoải mái
+                ,nhân viên đón tiếp rất nhiệt tình ,chu đáo .tôi sẽ giới thiệu
+                cho bạn bè tôi
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
               src={
                 "https://media.vneconomy.vn/images/upload/2022/07/13/elon-musk-met-gala.jpg"
               }
-              name={"Elon Musk"}
-              title={"CEO Tesla"}
+              name={"Nga Bui"}
+              title={"Customer"}
             />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Mindblowing Service</TestimonialHeading>
+              <TestimonialHeading>Cảm thẩy rất hài lòng</TestimonialHeading>
               <TestimonialText>
-                This services extremely perfect I am very like it
+                Các bạn nhân viên thân thiện, nhiệt tình. Mỗi lần làm thấy rất
+                thoải mái. Nói chung là hài lòng :)
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar
               src={
                 "https://cafebiz.cafebizcdn.vn/162123310254002176/2023/8/10/mark-zuckerberg-is-back-interview-kleine2ua0r-1691639044611-16916390451821444662577.jpg"
               }
-              name={"Mark Zuckerberg"}
-              title={"CEO Meta"}
+              name={"Khánh Ly Trân"}
+              title={"Customer"}
             />
           </Testimonial>
         </Stack>
