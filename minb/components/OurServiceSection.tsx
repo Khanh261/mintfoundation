@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Flex,
@@ -9,50 +11,66 @@ import {
   Badge,
   Button,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 export default function OurServiceSection() {
-  return (
-    <Box bgGradient="white" mt={20}>
-      <Container maxW="container.xl" py={16}>
-        <Stack spacing={8} align="center" textAlign="center">
-          <Heading color="black.300">Our Services</Heading>
-          <Text color="black.200">
-            Here are all the stores belonging to the MinT Foundation complex{" "}
-          </Text>
-          <Flex justify="center" flexWrap="wrap">
-            <Service
-              imageSrc="/homepage/service1.jpg"
-              altText="Flower"
-              serviceTitle="Mint Spa"
-              buttonText="MinT Health Spa"
-              buttonUrl="https://www.facebook.com/TrinhMinhBeautySpa"
-            />
-            <Service
-              imageSrc="/homepage/logo.jpg"
-              altText="Coffee"
-              serviceTitle="Body Cleanse"
-              buttonText="Trinh Minh Beauty Academy"
-              buttonUrl="https://www.facebook.com/trinhminhbeautyacademy"
-            />
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+  });
 
-            <Service
-              imageSrc="/homepage/service3.jpg"
-              altText="Cat"
-              serviceTitle="Healthcare"
-              buttonText="Mint Bistro"
-              buttonUrl="https://www.facebook.com/mint.kafe.club"
-            />
-            <Service
-              imageSrc="/homepage/service4.jpg"
-              altText="Gift"
-              serviceTitle="Spa Package"
-              buttonText="Bếp nhà Nem"
-              buttonUrl="https://www.facebook.com/yeubepnhanem"
-            />
-          </Flex>
-        </Stack>
-      </Container>
-    </Box>
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: inView ? 1 : 0 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
+    >
+      <Box bgGradient="white" mt={20} ref={ref}>
+        {inView && (
+          <Container maxW="container.xl" py={16}>
+            <Stack spacing={8} align="center" textAlign="center">
+              <Heading color="black.300">Our Services</Heading>
+              <Text color="black.200">
+                Here are all the stores belonging to the MinT Foundation complex{" "}
+              </Text>
+              <Flex justify="center" flexWrap="wrap">
+                <Service
+                  imageSrc="/homepage/service1.jpg"
+                  altText="Flower"
+                  serviceTitle="Mint Spa"
+                  buttonText="MinT Health Spa"
+                  buttonUrl="https://www.facebook.com/TrinhMinhBeautySpa"
+                />
+                <Service
+                  imageSrc="/homepage/logo.jpg"
+                  altText="Coffee"
+                  serviceTitle="Body Cleanse"
+                  buttonText="Trinh Minh Beauty Academy"
+                  buttonUrl="https://www.facebook.com/trinhminhbeautyacademy"
+                />
+
+                <Service
+                  imageSrc="/homepage/service3.jpg"
+                  altText="Cat"
+                  serviceTitle="Healthcare"
+                  buttonText="Mint Bistro"
+                  buttonUrl="https://www.facebook.com/mint.kafe.club"
+                />
+                <Service
+                  imageSrc="/homepage/service4.jpg"
+                  altText="Gift"
+                  serviceTitle="Spa Package"
+                  buttonText="Bếp nhà Nem"
+                  buttonUrl="https://www.facebook.com/yeubepnhanem"
+                />
+              </Flex>
+            </Stack>
+          </Container>
+        )}
+      </Box>
+    </motion.div>
   );
 }
 

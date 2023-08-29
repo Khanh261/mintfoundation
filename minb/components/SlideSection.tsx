@@ -1,4 +1,10 @@
+"use client";
+
 import React from "react";
+import LazyLoad from "react-lazyload";
+
+import { motion } from "framer-motion";
+
 import {
   Box,
   IconButton,
@@ -91,27 +97,27 @@ export default function SlideSection() {
       </IconButton>
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
-          <Box
-            key={index}
+          <LazyLoad
             height={useBreakpointValue({ base: "70vh", md: "90vh" })}
-            position="relative"
-            backgroundPosition="top center"
-            backgroundRepeat="no-repeat"
-            backgroundSize="100% 100%"
-            backgroundImage={`url(${card.image})`}
+            key={index}
           >
-            <Container size="container.lg" height="100%" position="relative">
-              <Stack
-                spacing={6}
-                w={"full"}
-                maxW={"lg"}
-                position="absolute"
-                top="60%"
-                left="50%"
-                transform="translate(-50%, -50%)"
-              ></Stack>
-            </Container>
-          </Box>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }} // Adjust the duration as needed
+            >
+              <Box
+                height={useBreakpointValue({ base: "70vh", md: "90vh" })}
+                position="relative"
+                backgroundPosition="top center"
+                backgroundRepeat="no-repeat"
+                backgroundSize="100% 100%"
+                backgroundImage={`url(${card.image})`}
+              >
+                {/* Rest of your code */}
+              </Box>
+            </motion.div>
+          </LazyLoad>
         ))}
       </Slider>
     </Box>

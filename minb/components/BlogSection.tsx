@@ -1,3 +1,4 @@
+"use client";
 import {
   Avatar,
   Box,
@@ -7,6 +8,9 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
+
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface BlogPost {
   title: string;
@@ -61,46 +65,64 @@ function truncateText(text: string, maxLength: number) {
 }
 
 export default function BlogSection() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+  });
   return (
-    <Box bg="white" p={10} mx={20}>
-      <Heading mb={20} textAlign="center">
-        Latest News & Events
-      </Heading>
-      <Flex justify="center">
-        {blogPosts.map((post) => (
-          <Box
-            key={post.title}
-            mx={5}
-            borderRadius={"24px"}
-            border="0.3px solid gray"
-          >
-            <Image
-              src={post.image}
-              alt={post.title}
-              mb={5}
-              borderRadius={"25px"}
-            />
-            <Box p={5}>
-              <Flex align="center">
-                <Avatar name={post.author} src={post.avatar} mr={3} />
-                <Box>
-                  <Text fontWeight="bold">{post.author}</Text>
-                  <Text>{post.date}</Text>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: inView ? 1 : 0 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
+      ref={ref}
+    >
+      <Box bg="white" p={10} mx={20}>
+        <Heading mb={20} textAlign="center">
+          Latest News & Events
+        </Heading>
+        <Flex justify="center">
+          {blogPosts.map((post) => (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: inView ? 1 : 0 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+              ref={ref}
+            >
+              <Box
+                key={post.title}
+                mx={5}
+                borderRadius={"24px"}
+                border="0.3px solid gray"
+              >
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  mb={5}
+                  borderRadius={"25px"}
+                />
+                <Box p={5}>
+                  <Flex align="center">
+                    <Avatar name={post.author} src={post.avatar} mr={3} />
+                    <Box>
+                      <Text fontWeight="bold">{post.author}</Text>
+                      <Text>{post.date}</Text>
+                    </Box>
+                  </Flex>
+                  <Text fontWeight="bold" mt={5}>
+                    {post.title}
+                  </Text>
+                  <Text>{truncateText(post.excerpt, 100)}</Text>
+                  <a href={post.url}>
+                    <Button color={"white"} mt={5} backgroundColor={"teal.300"}>
+                      Visit site
+                    </Button>
+                  </a>
                 </Box>
-              </Flex>
-              <Text fontWeight="bold" mt={5}>
-                {post.title}
-              </Text>
-              <Text>{truncateText(post.excerpt, 100)}</Text>
-              <a href={post.url}>
-                <Button color={"white"} mt={5} backgroundColor={"teal.300"}>
-                  Visit site
-                </Button>
-              </a>
-            </Box>
-          </Box>
-        ))}
-      </Flex>
-    </Box>
+              </Box>
+            </motion.div>
+          ))}
+        </Flex>
+      </Box>
+    </motion.div>
   );
 }

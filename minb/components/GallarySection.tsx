@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Container,
@@ -9,6 +10,8 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface GalleryImage {
   src: string;
@@ -103,69 +106,116 @@ export default function GallerySection({
       : galleryImages.filter((image) => image.category === selectedCategory)
           .length;
 
+  const [gridRef, gridInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px 0px",
+  });
   return (
-    <Box bg="white" borderTop="10px" borderBottom="10px">
-      <Container maxW="container.xl" py={16}>
-        <Heading color="black.500" mb={4} textAlign="center">
-          {title}
-        </Heading>
-        <Text color="gray.600" mb={8} textAlign="center">
-          {description}
-        </Text>
-        <Box mb={4} textAlign="center">
-          {" "}
-          {/* Center the buttons */}
-          <ButtonGroup justifyContent="center">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                colorScheme={selectedCategory === category ? "teal" : undefined}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Box>
-        <SimpleGrid columns={3} spacing={4}>
-          {filteredImages.map((image) => (
-            <Image
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
-              rounded="md"
-              border="2px"
-              borderColor="teal.300"
-            />
-          ))}
-        </SimpleGrid>
-        {numImages < totalImages && (
-          <Box textAlign="center" mt={4}>
-            <Button
-              backgroundColor={"teal.300"}
-              onClick={() => {
-                setNumImages((prevNum) => prevNum + 6);
-                setShowLess(true);
-              }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: gridInView ? 1 : 0 }}
+      transition={{ duration: 0.7, delay: 0.7 }}
+    >
+      <Box bg="white" borderTop="10px" borderBottom="10px">
+        <Container maxW="container.xl" py={16}>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Heading color="black.500" mb={4} textAlign="center">
+              {title}
+            </Heading>
+            <Text color="gray.600" mb={8} textAlign="center">
+              {description}
+            </Text>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <Box mb={4} textAlign="center">
+              <ButtonGroup justifyContent="center">
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    colorScheme={
+                      selectedCategory === category ? "teal" : undefined
+                    }
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </ButtonGroup>
+            </Box>
+          </motion.div>
+          <motion.div
+            ref={gridRef}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: gridInView ? 1 : 0, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <SimpleGrid columns={3} spacing={4}>
+              {filteredImages.map((image) => (
+                <motion.div
+                  key={image.src}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: gridInView ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    rounded="md"
+                    border="2px"
+                    borderColor="teal.300"
+                  />
+                </motion.div>
+              ))}
+            </SimpleGrid>
+          </motion.div>
+          {numImages < totalImages && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Load More
-            </Button>
-          </Box>
-        )}
-        {showLess && (
-          <Box textAlign="center" mt={4}>
-            <Button
-              backgroundColor={"teal.300"}
-              onClick={() => {
-                setNumImages((prevNum) => Math.max(prevNum - 6, 6));
-                setShowLess(false);
-              }}
+              <Box textAlign="center" mt={4}>
+                <Button
+                  backgroundColor={"teal.300"}
+                  onClick={() => {
+                    setNumImages((prevNum) => prevNum + 6);
+                    setShowLess(true);
+                  }}
+                >
+                  Load More
+                </Button>
+              </Box>
+            </motion.div>
+          )}
+          {showLess && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
-              Show Less
-            </Button>
-          </Box>
-        )}
-      </Container>
-    </Box>
+              <Box textAlign="center" mt={4}>
+                <Button
+                  backgroundColor={"teal.300"}
+                  onClick={() => {
+                    setNumImages((prevNum) => Math.max(prevNum - 6, 6));
+                    setShowLess(false);
+                  }}
+                >
+                  Show Less
+                </Button>
+              </Box>
+            </motion.div>
+          )}
+        </Container>
+      </Box>
+    </motion.div>
   );
 }
