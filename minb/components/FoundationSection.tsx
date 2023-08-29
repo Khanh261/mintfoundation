@@ -6,8 +6,8 @@ export default function FoundationSection() {
       <Heading textAlign="center" mb={10}>
         Our Foundation
       </Heading>
-      <Flex>
-        <Box mr={10}>
+      <Flex direction={{ base: "column", md: "row" }}>
+        <Box mr={{ base: 0, md: 10 }}>
           <Heading mb={5} color={"teal.300"}>
             Trịnh Minh
           </Heading>
@@ -43,10 +43,10 @@ export default function FoundationSection() {
         </Box>
 
         <Image
-          pl={20}
-          src="/homepage/founder_avatar.jpg" // Replace with the actual path to your image
+          pl={{ base: 0, md: 20 }}
+          src="/homepage/founder_avatar.jpg"
           alt="Founder's Image"
-          w="50%"
+          w={{ base: "100%", md: "50%" }}
           h="100%"
           objectFit="cover"
           borderRadius={2}

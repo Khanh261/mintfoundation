@@ -19,6 +19,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
+
 import {
   HamburgerIcon,
   CloseIcon,
@@ -46,6 +47,13 @@ export default function Navbar() {
         top="0"
         zIndex={1000}
       >
+        <IconButton
+          icon={<HamburgerIcon />}
+          variant={"ghost"}
+          aria-label={"Toggle Navigation"}
+          display={{ base: "inline-flex", md: "none" }}
+          onClick={onToggle}
+        />
         <Flex display={{ base: "none", md: "flex" }}>
           <DesktopNav />
         </Flex>
@@ -63,6 +71,7 @@ export default function Navbar() {
             bg: "pink.300",
           }}
           ml={1}
+          display={{ base: "none", md: "inline-flex" }}
         >
           Book Now{" "}
         </Button>
@@ -246,33 +255,9 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
     href: "#",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
-    ],
   },
   {
     label: "About Us",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
   },
   {
     label: "Albums",
@@ -283,15 +268,12 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Products",
-    href: "#",
   },
 
   {
     label: "Founder Message",
-    href: "#",
   },
   {
     label: "Contact Us",
-    href: "#",
   },
 ];

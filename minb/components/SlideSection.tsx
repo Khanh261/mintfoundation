@@ -93,7 +93,7 @@ export default function SlideSection() {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={"90vh"}
+            height={useBreakpointValue({ base: "70vh", md: "90vh" })}
             position="relative"
             backgroundPosition="top center"
             backgroundRepeat="no-repeat"

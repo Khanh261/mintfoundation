@@ -19,7 +19,7 @@ export default function OurServiceSection() {
           <Text color="black.200">
             Here are all the stores belonging to the MinT Foundation complex{" "}
           </Text>
-          <Flex justify="center">
+          <Flex justify="center" flexWrap="wrap">
             <Service
               imageSrc="/homepage/service1.jpg"
               altText="Flower"
@@ -72,7 +72,12 @@ function Service({
   buttonUrl,
 }: ServiceProps) {
   return (
-    <Box position="relative" mx={4} textAlign="center">
+    <Box
+      position="relative"
+      mx={4}
+      textAlign="center"
+      w={["100%", "50%", "25%"]}
+    >
       <Image src={imageSrc} alt={altText} boxSize={60} rounded="full" />
       <Badge
         position="absolute"
