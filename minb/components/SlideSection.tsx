@@ -39,10 +39,10 @@ export default function SlideSection() {
 
   const cards = [
     {
-      image: "/homepage/slide06.jpg",
+      image: "/homepage/slide05.jpg",
     },
     {
-      image: "/homepage/slide05.jpg",
+      image: "/homepage/slide06.jpg",
     },
     {
       image: "/homepage/slide08.jpg",

@@ -114,7 +114,7 @@ export default function GallerySection({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: gridInView ? 1 : 0 }}
-      transition={{ duration: 0.7, delay: 0.7 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
     >
       <Box bg="white" borderTop="10px" borderBottom="10px">
         <Container maxW="container.xl" py={16}>
