@@ -19,6 +19,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Link } from "react-scroll";
 
 import {
   HamburgerIcon,
@@ -34,7 +35,7 @@ export default function Navbar() {
     <Box>
       <Flex
         bg={"white"}
-        color={"gray.600"}
+        color={"black"}
         minH={"93px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
@@ -43,16 +44,19 @@ export default function Navbar() {
         borderColor={"gray.200"}
         align={"center"}
         justifyContent={"center"}
-        position="sticky"
+        position="fixed"
         top="0"
         zIndex={1000}
+        width={"100%"}
       >
         <IconButton
+          color={"black"}
           icon={<HamburgerIcon />}
           variant={"ghost"}
           aria-label={"Toggle Navigation"}
           display={{ base: "inline-flex", md: "none" }}
           onClick={onToggle}
+          alignItems={"center"}
         />
         <Flex display={{ base: "none", md: "flex" }}>
           <DesktopNav />
@@ -68,7 +72,7 @@ export default function Navbar() {
           width={"max-content"}
           href={"#"}
           _hover={{
-            bg: "pink.300",
+            bg: "gray.300",
           }}
           ml={1}
           display={{ base: "none", md: "inline-flex" }}
@@ -78,102 +82,52 @@ export default function Navbar() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <Box position="fixed" top="93px" width="100%" zIndex={1000}>
+          <MobileNav />
+        </Box>
       </Collapse>
     </Box>
   );
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
   return (
-    <Stack direction={"row"} spacing={4} alignItems={"center"}>
+    <Stack direction={"row"} spacing={5} alignItems={"center"}>
       <Image src="/homepage/logo.jpg" w={20} alt="Description of image" />
-
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Box
-                as="a"
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"lg"}
-                fontWeight={500}
-                color={linkColor}
+          {navItem.href ? (
+            <Link
+              to={navItem.href}
+              spy={true}
+              smooth={true}
+              duration={500}
+              offset={-100}
+            >
+              <Text
+                fontSize="lg"
+                fontWeight="500"
+                color="gray.600"
                 _hover={{
-                  textDecoration: "none",
                   backgroundColor: "teal.300",
-                  borderRadius: "20px",
                   color: "white",
+                  borderRadius: "20px",
+                  cursor: "pointer",
                 }}
+                px={2}
+                py={2}
               >
                 {navItem.label}
-              </Box>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
+              </Text>
+            </Link>
+          ) : (
+            <Text fontSize="lg" fontWeight="500" color="gray.600">
+              {navItem.label}
+            </Text>
+          )}
         </Box>
       ))}
     </Stack>
-  );
-};
-
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-  return (
-    <Box
-      as="a"
-      href={href}
-      role={"group"}
-      display={"block"}
-      p={2}
-      rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
-    >
-      <Stack direction={"row"} align={"center"}>
-        <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {label}
-          </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={"all .3s ease"}
-          transform={"translateX(-10px)"}
-          opacity={0}
-          _groupHover={{ opacity: "100%", transform: "translateX(0)" }}
-          justify={"flex-end"}
-          align={"center"}
-          flex={1}
-          justifyContent={"space-between"} // Align content in a single line
-        >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
-        </Flex>
-      </Stack>
-    </Box>
   );
 };
 
@@ -193,58 +147,97 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
+  const color = useColorModeValue("gray.600", "gray.200");
+
+  const handleClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute("href")!.slice(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Box
-        py={2}
-        as="a"
-        href={href ?? "#"}
-        justifyContent="space-between"
-        alignItems="center"
-        _hover={{
-          textDecoration: "none",
-        }}
-      >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
+      {href ? (
+        <a href={href} onClick={handleClick}>
+          <Box
+            py={2}
+            justifyContent="space-between"
+            alignItems="center"
+            _hover={{
+              textDecoration: "none",
+            }}
+          >
+            <Text fontWeight={600} color={color}>
+              {label}
+            </Text>
+            {children && (
+              <Icon
+                as={ChevronDownIcon}
+                transition="all .25s ease-in-out"
+                transform={isOpen ? "rotate(180deg)" : ""}
+                w={6}
+                h={6}
+              />
+            )}
+          </Box>
+        </a>
+      ) : (
+        <Box
+          py={2}
+          justifyContent="space-between"
+          alignItems="center"
+          _hover={{
+            textDecoration: "none",
+          }}
         >
-          {label}
-        </Text>
-        {children && (
-          <Icon
-            as={ChevronDownIcon}
-            transition={"all .25s ease-in-out"}
-            transform={isOpen ? "rotate(180deg)" : ""}
-            w={6}
-            h={6}
-          />
-        )}
-      </Box>
+          <Text fontWeight={600} color={color}>
+            {label}
+          </Text>
+          {children && (
+            <Icon
+              as={ChevronDownIcon}
+              transition="all .25s ease-in-out"
+              transform={isOpen ? "rotate(180deg)" : ""}
+              w={6}
+              h={6}
+            />
+          )}
+        </Box>
+      )}
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
+      {children && isOpen && (
         <Stack
           mt={2}
           pl={4}
           borderLeft={1}
-          borderStyle={"solid"}
-          borderColor={useColorModeValue("gray.200", "gray.700")}
-          align={"start"}
+          borderStyle="solid"
+          borderColor={color}
+          align="start"
         >
-          {children &&
-            children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
+          {children.map((child) =>
+            child.href ? (
+              <a key={child.label} href={child.href} onClick={handleClick}>
+                <Box py={2}>{child.label}</Box>
+              </a>
+            ) : (
+              <Box key={child.label} py={2}>
                 {child.label}
               </Box>
-            ))}
+            )
+          )}
         </Stack>
-      </Collapse>
+      )}
     </Stack>
   );
 };
 
 interface NavItem {
+  id?: string;
   label: string;
   subLabel?: string;
   children?: Array<NavItem>;
@@ -254,26 +247,32 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: "Home",
-    href: "#",
+    href: "#home",
+    id: "home",
   },
   {
     label: "About Us",
+    href: "#footer",
+    id: "about-us",
   },
   {
     label: "Albums",
+    href: "#albums",
+    id: "albums",
   },
   {
     label: "Services",
-    href: "#",
+    href: "#our-services",
+    id: "",
   },
   {
-    label: "Products",
-  },
-
-  {
-    label: "Founder Message",
+    label: "Blog",
+    href: "#blog",
+    id: "blog",
   },
   {
-    label: "Contact Us",
+    label: "Founder",
+    href: "#foundation",
+    id: "founder-message",
   },
 ];

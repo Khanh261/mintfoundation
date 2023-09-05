@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Box,
   Flex,
@@ -43,44 +42,50 @@ const AnimatedIcon = chakra(Icon, {
   },
 });
 
+const TopHeaderContainer = chakra(Flex, {
+  baseStyle: {
+    bg: "teal.300",
+    color: "white.600",
+    minH: "60px",
+    py: { base: 2 },
+    px: { base: 4 },
+    align: "center",
+  },
+});
+
+const TopHeaderCenter = chakra(Center, {
+  baseStyle: {},
+});
+
+const TopHeaderHStack = chakra(HStack, {
+  baseStyle: {
+    spacing: "5px",
+    color: "black",
+  },
+});
+
 export default function TopHeader() {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   return (
-    <Flex
-      bg={"teal.300"}
-      color={"white.600"}
-      minH={"60px"}
-      py={{ base: 2 }}
-      px={{ base: 4 }}
-      align={"center"}
-      direction={{ base: "column", md: "row" }}
-    >
+    <TopHeaderContainer direction={{ base: "column", md: "row" }}>
       <Spacer />
 
-      <Center>
+      <TopHeaderCenter>
         <Flex direction={isLargerThan768 ? "row" : "column"}>
-          <HStack
-            spacing={5}
-            mr={15}
-            justifyContent={isLargerThan768 ? "flex-start" : "center"}
-          >
-            <Icon as={FaClock} />
-            <Text>Mở cửa vào lúc - 09:00 - 21:00</Text>
-          </HStack>
-          <HStack spacing={5} mx={15}>
+          <TopHeaderHStack spacing={5} mx={15} color={"black"}>
             <Icon as={FaEnvelope} />
             <Link href="mailto:minhkelly.trinh@gmail.com">
-              <Text>minhkelly.trinh@gmail.com</Text>
+              <Text color={"black"}>minhkelly.trinh@gmail.com</Text>
             </Link>
             <Icon as={FaPhoneAlt} />
             <Link href="tel:0388084099">
               <Text>038 808 4099</Text>
             </Link>
-          </HStack>
+          </TopHeaderHStack>
         </Flex>
         {isLargerThan768 && (
-          <HStack spacing={5} ml={15}>
+          <TopHeaderHStack spacing={5} ml={15}>
             <Link href="https://www.facebook.com/mint.foundation" isExternal>
               <AnimatedIcon as={FaFacebookF} color="gray.600" />
             </Link>
@@ -96,11 +101,11 @@ export default function TopHeader() {
             <Link href="https://www.youtube.com/@MinTFoundation" isExternal>
               <AnimatedIcon as={FaYoutube} color="gray.600" />
             </Link>
-          </HStack>
+          </TopHeaderHStack>
         )}
-      </Center>
+      </TopHeaderCenter>
 
       <Spacer />
-    </Flex>
+    </TopHeaderContainer>
   );
 }

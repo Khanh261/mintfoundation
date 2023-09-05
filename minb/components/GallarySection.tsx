@@ -26,8 +26,7 @@ interface GallerySectionProps {
 }
 
 const defaultTitle = "Albums";
-const defaultDescription =
-  "Đây là một sô hình ảnh về quá trinh làm việc của chúng tôi";
+const defaultDescription = "Here are some pictures of our working process";
 const defaultGalleryImages: GalleryImage[] = [
   {
     src: "/homepage/album01.jpg",
@@ -39,16 +38,16 @@ const defaultGalleryImages: GalleryImage[] = [
     alt: "Belt 2",
     category: "MinT Beauty Academy",
   },
+  {
+    src: "/homepage/album04.jpg",
+    alt: "Belt 2",
+    category: "MinT Health Spa",
+  },
 
   {
     src: "/homepage/album05.jpg",
     alt: "Belt 2",
     category: "MinT Beauty Academy",
-  },
-  {
-    src: "/homepage/album06.jpg",
-    alt: "Belt 2",
-    category: "MinT Bistro",
   },
   {
     src: "/homepage/album02.jpg",
@@ -60,23 +59,6 @@ const defaultGalleryImages: GalleryImage[] = [
     alt: "",
     category: "MinT Bistro",
   },
-  {
-    src: "/homepage/album08.jpg",
-    alt: "",
-    category: "MinT Health Spa",
-  },
-  {
-    src: "/homepage/album07.jpg",
-    alt: "",
-    category: "MinT Beauty Academy",
-  },
-  {
-    src: "/homepage/album09.jpg",
-    alt: "",
-    category: "MinT Beauty Academy",
-  },
-
-  // ...
 ];
 
 export default function GallerySection({
@@ -84,43 +66,34 @@ export default function GallerySection({
   description = defaultDescription,
   galleryImages = defaultGalleryImages,
 }: GallerySectionProps) {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [numImages, setNumImages] = useState(6);
-  const [showLess, setShowLess] = useState(false);
-
+  // Simplified the logic for filtering images
   const categories = [
     "All",
     ...new Set(galleryImages.map((image) => image.category)),
   ];
-
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const filteredImages =
     selectedCategory === "All"
-      ? galleryImages.slice(0, numImages)
-      : galleryImages
-          .filter((image) => image.category === selectedCategory)
-          .slice(0, numImages);
+      ? galleryImages
+      : galleryImages.filter((image) => image.category === selectedCategory);
 
-  const totalImages =
-    selectedCategory === "All"
-      ? galleryImages.length
-      : galleryImages.filter((image) => image.category === selectedCategory)
-          .length;
-
+  // Simplified the logic for animating the grid of images
   const [gridRef, gridInView] = useInView({
     triggerOnce: true,
-    rootMargin: "-100px 0px",
+    rootMargin: "-100px",
   });
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
+      initial={{ opacity: gridInView ? 1 : 0 }}
       animate={{ opacity: gridInView ? 1 : 0 }}
-      transition={{ duration: 0.5, delay: 0.5 }}
+      transition={{ duration: 0.5 }}
     >
-      <Box bg="white" borderTop="10px" borderBottom="10px">
-        <Container maxW="container.xl" py={16}>
+      <Box bg="white" borderTop="10px" borderBottom="10px" color={"black"}>
+        <Container maxW="container.xl" py={16} id="#albums">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: gridInView ? 1 : 0 }}
+            animate={{ opacity: gridInView ? 1 : 0 }}
             transition={{ duration: 0.5 }}
           >
             <Heading color="black.500" mb={4} textAlign="center">
@@ -131,14 +104,16 @@ export default function GallerySection({
             </Text>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: gridInView ? 1 : 0 }}
+            animate={{ opacity: gridInView ? 1 : 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Box mb={4} textAlign="center">
+            <Box mb={4} textAlign={"center"}>
               <ButtonGroup justifyContent="center">
                 {categories.map((category) => (
                   <Button
+                    backgroundColor={"teal.300"}
+                    color={"white"}
                     key={category}
                     colorScheme={
                       selectedCategory === category ? "teal" : undefined
@@ -153,67 +128,23 @@ export default function GallerySection({
           </motion.div>
           <motion.div
             ref={gridRef}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: gridInView ? 1 : 0, y: 0 }}
+            initial={{ opacity: gridInView ? 1 : 0 }}
+            animate={{ opacity: gridInView ? 1 : 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <SimpleGrid columns={3} spacing={4}>
               {filteredImages.map((image) => (
                 <motion.div
                   key={image.src}
-                  initial={{ opacity: 0 }}
+                  initial={{ opacity: gridInView ? 1 : 0 }}
                   animate={{ opacity: gridInView ? 1 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    rounded="md"
-                    border="2px"
-                    borderColor="teal.300"
-                  />
+                  <Image src={image.src} alt={image.alt} rounded="md" />
                 </motion.div>
               ))}
             </SimpleGrid>
           </motion.div>
-          {numImages < totalImages && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <Box textAlign="center" mt={4}>
-                <Button
-                  backgroundColor={"teal.300"}
-                  onClick={() => {
-                    setNumImages((prevNum) => prevNum + 6);
-                    setShowLess(true);
-                  }}
-                >
-                  Load More
-                </Button>
-              </Box>
-            </motion.div>
-          )}
-          {showLess && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <Box textAlign="center" mt={4}>
-                <Button
-                  backgroundColor={"teal.300"}
-                  onClick={() => {
-                    setNumImages((prevNum) => Math.max(prevNum - 6, 6));
-                    setShowLess(false);
-                  }}
-                >
-                  Show Less
-                </Button>
-              </Box>
-            </motion.div>
-          )}
         </Container>
       </Box>
     </motion.div>

@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 interface BlogPost {
+  id?: number;
   title: string;
   author: string;
   date: string;
@@ -24,6 +25,7 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
+    id: 1,
     title: "Liệu trình laser cacbon",
     author: "Author Name 1",
     date: "January 1, 2023",
@@ -31,10 +33,11 @@ const blogPosts: BlogPost[] = [
     excerpt:
       "Hãy cùng MinT tìm hiểu dịch vụ ” Hot” nhất hiện tại nhà MinT nha ❤\n🌱Liệu trình laser cacbon, hay còn gọi là Carbon Laser Peel, là một phương pháp thẩm mỹ không phẫu thuật sử dụng công nghệ laser để cải thiện tình trạng da mặt. Đây là một phương pháp phổ biến được sử dụng để cải thiện làn da tổn thương, trị mụn và giảm thiểu vết nhăn nhờ sự kết hợp giữa laser và cacbon.\n🌱Quy trình Carbon Laser Peel diễn ra như sau:\nĐầu tiên, da mặt sẽ được làm sạch grime, bụi bẩn và lớp tế bào chết.\nSau đó, một lớp gel chứa cacbon sẽ được thoa lên da mặt. Cacbon có khả năng hấp thụ ánh sáng laser.\nTiếp theo, một máy laser sẽ được sử dụng để phát ra những xung laser vào da. Ánh sáng laser sẽ tương tác với cacbon, làm cho lớp cacbon nhanh chóng bay hơi và lấy đi các tạp chất trên da, gồm bụi bẩn, dầu, bã nhờn và tế bào chết.\nKhi laser xâm nhập vào da, nó còn kích thích quá trình tái tạo tế bào da mới, giúp làm dịu vết thâm mụn, sáng da và giảm thiểu nếp nhăn nhờ cải thiện sự đàn hồi của da.\n🌱Lợi ích của liệu trình laser cacbon bao gồm:\nLàm sạch sâu da mặt, giúp giảm thiểu mụn và kiểm soát dầu nhờn.\nGiảm vết thâm mụn và làm đều màu da.\nGiảm kích thước lỗ chân lông, làm mờ vết nhăn và sự xuất hiện của nếp nhăn nhờ cải thiện độ đàn hồi của da.\nLàm sáng da, làm mờ sẹo nhỏ, giúp da mặt trở nên mềm mại và mịn màng hơn.\nDịch vụ mới - ngập tràn ưu đãi mới  ❤",
     avatar: "/homepage/album05.jpg",
-    url: "https://www.facebook.com/reel/4216490865243446", // Add this line
+    url: "https://www.facebook.com/reel/4216490865243446",
   },
 
   {
+    id: 2,
     title: "MASSAGE Foot 60p cùng đá nóng tinh dầu",
     author: "Author Name 2",
     date: "February 1, 2023",
@@ -45,6 +48,7 @@ const blogPosts: BlogPost[] = [
     url: "https://www.facebook.com/photo/?fbid=962008455164146&set=a.733742044657456", // Add this line
   },
   {
+    id: 3,
     title: "TIPS GỘI ĐẦU HAY HO 4 NGÀY KHÔNG BẾT ",
     author: "Author Name 3",
     date: "March 1, 2023",
@@ -76,17 +80,17 @@ export default function BlogSection() {
       transition={{ duration: 0.5, delay: 0.5 }}
       ref={ref}
     >
-      <Box bg="white" p={10} mx={20}>
+      <Box id="#blog" p={10} mx={20} color={"black"}>
         <Heading mb={20} textAlign="center">
           Latest News & Events
         </Heading>
         <Flex justify="center">
           {blogPosts.map((post) => (
             <motion.div
+              key={post.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: inView ? 1 : 0 }}
               transition={{ duration: 0.3, delay: 0.5 }}
-              ref={ref}
             >
               <Box
                 key={post.title}

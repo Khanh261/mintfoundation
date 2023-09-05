@@ -68,7 +68,7 @@ const TestimonialText = (props: Props) => {
   const { children } = props;
 
   return (
-    <Text textAlign={"center"} color={"black"} fontSize={"sm"}>
+    <Text textAlign={"center"} color={"white"} fontSize={"sm"}>
       {children}
     </Text>
   );
@@ -109,7 +109,7 @@ export default function TestimonialsSection() {
     >
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
-          <Heading color={"white"}>Ý kiến của khách hàng</Heading>
+          <Heading color={"white"}>Feedback</Heading>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}

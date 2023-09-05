@@ -1,3 +1,4 @@
+"use client";
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
@@ -19,11 +20,13 @@ export default function FoundationSection() {
         boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
         p={20}
         ref={ref}
+        id="#foundation"
+        color={"black"}
       >
         {inView && (
           <>
             <Heading textAlign="center" mb={10}>
-              Our Foundation
+              Introduction about Trinh Minh
             </Heading>
             <Flex direction={{ base: "column", md: "row" }}>
               <Box mr={{ base: 0, md: 10 }}>

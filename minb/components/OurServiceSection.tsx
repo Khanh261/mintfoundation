@@ -1,19 +1,64 @@
 "use client";
-
+import React from "react";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 import {
+  chakra,
   Box,
-  Flex,
-  Heading,
-  Text,
-  Stack,
-  Container,
   Image,
   Badge,
   Button,
+  Container,
+  Heading,
+  Text,
+  Flex,
+  Stack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
+
+const ServiceContainer = chakra(Box, {
+  baseStyle: {
+    position: "relative",
+    mx: 4,
+    textAlign: "center",
+    w: ["100%", "50%", "25%"],
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+});
+
+const ServiceImage = chakra(Image, {
+  baseStyle: {
+    boxSize: 60,
+    rounded: "full",
+  },
+});
+
+const ServiceBadge = chakra(Badge, {
+  baseStyle: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    bg: "red.500",
+    color: "white",
+    rounded: "full",
+    px: 2,
+  },
+});
+
+const ServiceButton = chakra(Button, {
+  baseStyle: {
+    mt: 2,
+    colorScheme: "teal",
+    size: "sm",
+    bgColor: "teal.300",
+    color: "white",
+    "@media (max-width: 600px)": {
+      display: "block",
+      mx: "auto",
+    },
+  },
+});
 
 export default function OurServiceSection() {
   const [ref, inView] = useInView({
@@ -27,13 +72,13 @@ export default function OurServiceSection() {
       animate={{ opacity: inView ? 1 : 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
     >
-      <Box bgGradient="white" mt={20} ref={ref}>
+      <Box color={"black"} mt={20} ref={ref} id="#our-services">
         {inView && (
           <Container maxW="container.xl" py={16}>
             <Stack spacing={8} align="center" textAlign="center">
               <Heading color="black.300">Our Services</Heading>
-              <Text color="black.200">
-                Here are all the stores belonging to the MinT Foundation complex{" "}
+              <Text color="black">
+                Here are all the stores belonging to the MinT Foundation{" "}
               </Text>
               <Flex justify="center" flexWrap="wrap">
                 <Service
@@ -42,6 +87,10 @@ export default function OurServiceSection() {
                   serviceTitle="Mint Spa"
                   buttonText="MinT Health Spa"
                   buttonUrl="https://www.facebook.com/TrinhMinhBeautySpa"
+                  buttonStyle={{
+                    marginLeft: "auto",
+                    marginRight: "20px",
+                  }}
                 />
                 <Service
                   imageSrc="/homepage/logo.jpg"
@@ -49,6 +98,9 @@ export default function OurServiceSection() {
                   serviceTitle="Body Cleanse"
                   buttonText="Trinh Minh Beauty Academy"
                   buttonUrl="https://www.facebook.com/trinhminhbeautyacademy"
+                  buttonStyle={{
+                    paddingLeft: "10px",
+                  }}
                 />
 
                 <Service
@@ -57,6 +109,10 @@ export default function OurServiceSection() {
                   serviceTitle="Healthcare"
                   buttonText="Mint Bistro"
                   buttonUrl="https://www.facebook.com/mint.kafe.club"
+                  buttonStyle={{
+                    marginLeft: "auto",
+                    marginRight: "30px",
+                  }}
                 />
                 <Service
                   imageSrc="/homepage/service4.jpg"
@@ -64,6 +120,10 @@ export default function OurServiceSection() {
                   serviceTitle="Spa Package"
                   buttonText="Bếp nhà Nem"
                   buttonUrl="https://www.facebook.com/yeubepnhanem"
+                  buttonStyle={{
+                    marginLeft: "auto",
+                    marginRight: "20px",
+                  }}
                 />
               </Flex>
             </Stack>
@@ -79,7 +139,8 @@ interface ServiceProps {
   altText: string;
   serviceTitle: string;
   buttonText: string;
-  buttonUrl: string; // Add a new prop for the button URL
+  buttonUrl: string;
+  buttonStyle?: React.CSSProperties;
 }
 
 function Service({
@@ -90,30 +151,18 @@ function Service({
   buttonUrl,
 }: ServiceProps) {
   return (
-    <Box
-      position="relative"
-      mx={4}
-      textAlign="center"
-      w={["100%", "50%", "25%"]}
-    >
-      <Image src={imageSrc} alt={altText} boxSize={60} rounded="full" />
-      <Badge
-        position="absolute"
-        bottom={0}
-        right={0}
-        bg="red.500"
-        color="white"
-        rounded="full"
-        px={2}
-      ></Badge>
-      <Button
-        mt={2}
-        colorScheme="teal"
-        size="sm"
-        onClick={() => (window.location.href = buttonUrl)}
+    <ServiceContainer>
+      <ServiceImage src={imageSrc} alt={altText} />
+      <ServiceBadge></ServiceBadge>
+      <Box
+        display={{ base: "block", md: "inline" }}
+        ml={{ base: "auto", md: "initial" }}
+        mr={{ base: "auto", md: "initial" }}
       >
-        {buttonText}
-      </Button>
-    </Box>
+        <ServiceButton onClick={() => (window.location.href = buttonUrl)}>
+          {buttonText}
+        </ServiceButton>
+      </Box>
+    </ServiceContainer>
   );
 }

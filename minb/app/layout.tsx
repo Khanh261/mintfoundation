@@ -1,17 +1,25 @@
 "use client";
+import dynamic from "next/dynamic";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 
-import { ChakraProvider } from "@chakra-ui/react";
-import Navbar from "@/components/Navbar";
-import TopHeader from "@/components/TopHeader";
-import SlideSection from "@/components/SlideSection";
-import ColorMode from "@/components/ColorMode";
-import PriceService from "@/components/PriceService";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import OurServiceSection from "@/components/OurServiceSection";
-import FoundationSection from "@/components/FoundationSection";
-import Footer from "@/components/Footer";
-import BlogSection from "@/components/BlogSection";
-import GallerySection from "@/components/GallarySection";
+const DynamicNavbar = dynamic(() => import("@/components/Navbar"));
+const DynamicTopHeader = dynamic(() => import("@/components/TopHeader"));
+const DynamicSlideSection = dynamic(() => import("@/components/SlideSection"));
+const DynamicPriceService = dynamic(() => import("@/components/PriceService"));
+const DynamicTestimonialsSection = dynamic(
+  () => import("@/components/TestimonialsSection")
+);
+const DynamicOurServiceSection = dynamic(
+  () => import("@/components/OurServiceSection")
+);
+const DynamicFoundationSection = dynamic(
+  () => import("@/components/FoundationSection")
+);
+const DynamicFooter = dynamic(() => import("@/components/Footer"));
+const DynamicBlogSection = dynamic(() => import("@/components/BlogSection"));
+const DynamicGallerySection = dynamic(
+  () => import("@/components/GallarySection")
+);
 
 export default function RootLayout({
   children,
@@ -20,21 +28,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: "white" }}>
         <ChakraProvider>
-          {/* <ColorMode /> */}
-          <TopHeader />
-          <Navbar />
-          <SlideSection />
-          <OurServiceSection />
-          {/* <ProductSection /> */}
-          <GallerySection />
-          <PriceService />
-          <BlogSection />
-          <TestimonialsSection />
-          <FoundationSection />
+          <Box height="93px" />
+          <DynamicTopHeader />
           {children}
-          <Footer />
+          <DynamicNavbar />
+          <DynamicSlideSection />
+          <DynamicOurServiceSection />
+          <DynamicGallerySection />
+          <DynamicPriceService />
+          <DynamicBlogSection />
+          <DynamicTestimonialsSection />
+          <DynamicFoundationSection />
+          <DynamicFooter />
         </ChakraProvider>
       </body>
     </html>
