@@ -34,7 +34,7 @@ export default function FoundationSection() {
                   Trịnh Minh
                 </Heading>
                 <Text mb={5} fontSize="23">
-                  Founder & CEO of MinT Corporation
+                  Founder & CEO of MinT Foundation
                 </Text>
                 <Text mb={5} fontSize="xl">
                   Những điều về MinT corporation

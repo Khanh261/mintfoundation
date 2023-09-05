@@ -49,7 +49,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    title: "TIPS GỘI ĐẦU HAY HO 4 NGÀY KHÔNG BẾT ",
+    title: "TIPS GỘI ĐẦU HAY 4 NGÀY KHÔNG BẾT ",
     author: "Author Name 3",
     date: "March 1, 2023",
     image: "/homepage/album04.jpg",
@@ -84,25 +84,41 @@ export default function BlogSection() {
         <Heading mb={20} textAlign="center">
           Latest News & Events
         </Heading>
-        <Flex justify="center">
+        <Flex
+          justify="center"
+          flexWrap={{ base: "wrap", md: "nowrap" }}
+          flexDirection={{ base: "column", md: "row" }}
+        >
+          {" "}
           {blogPosts.map((post) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: inView ? 1 : 0 }}
               transition={{ duration: 0.3, delay: 0.5 }}
+              style={{
+                flex: "0 0 calc(33.33% - 20px)",
+                display: "flex",
+                flexDirection: "column",
+                flexGrow: 1,
+              }}
             >
               <Box
                 key={post.title}
                 mx={5}
+                my={5}
                 borderRadius={"24px"}
                 border="0.3px solid gray"
+                flexDirection="column"
+                flexGrow={1}
+                display="flex"
               >
                 <Image
                   src={post.image}
                   alt={post.title}
                   mb={5}
                   borderRadius={"25px"}
+                  flex="1"
                 />
                 <Box p={5}>
                   <Flex align="center">

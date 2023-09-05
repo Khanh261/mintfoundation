@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Container } from "@chakra-ui/react";
 import { useState, useRef, useEffect } from "react";
-
+import { useMediaQuery } from "@chakra-ui/react";
 import {
   Box,
   Text,
@@ -16,7 +16,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
-
 import { FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -35,25 +34,12 @@ interface CombinedSlideProps {
 }
 
 function CombinedSlide({ packages, heading }: CombinedSlideProps) {
-  const [expandedPackage, setExpandedPackage] = useState<number | null>(null);
-  const [showButton, setShowButton] = useState<boolean[]>([]);
-  const listRefs = useRef<(HTMLUListElement | null)[]>([]);
-
-  useEffect(() => {
-    setShowButton(
-      listRefs.current.map((list) => {
-        if (list) {
-          return list.scrollHeight > list.clientHeight;
-        }
-        return false;
-      })
-    );
-  }, []);
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   return (
     <>
       <Text
-        fontSize={30}
+        fontSize={isLargerThan768 ? 35 : 24}
         fontWeight="bold"
         textAlign="center"
         mb={4}
@@ -61,18 +47,22 @@ function CombinedSlide({ packages, heading }: CombinedSlideProps) {
       >
         {heading}
       </Text>
-      <Flex justifyContent={"center"} color={"black"}>
+      <Flex
+        justifyContent={"center"}
+        flexDirection={isLargerThan768 ? "row" : "column"}
+        color={"black"}
+      >
         {packages.map((pkg, index) => (
           <Box
             key={index}
-            width={440}
+            width={isLargerThan768 ? 440 : "100%"}
             mb={4}
-            shadow="base"
             borderWidth="1px"
             alignSelf={{ base: "center", lg: "flex-start" }}
-            borderColor={"gray.200"}
+            borderColor={"gray.400"}
             borderRadius={"xl"}
             margin={10}
+            height={isLargerThan768 ? 900 : "auto"}
           >
             <VStack bg={"gray.50"} py={4} borderBottomRadius={"xl"}>
               <Box py={4} px={12}>
@@ -84,14 +74,11 @@ function CombinedSlide({ packages, heading }: CombinedSlideProps) {
                 </Text>
               </Box>
               <List
-                ref={(el) => (listRefs.current[index] = el)}
                 spacing={3}
                 textAlign="start"
                 px={12}
                 fontSize={17}
-                minHeight="350px"
-                height={expandedPackage === index ? "auto" : "350px"}
-                overflow="hidden"
+                height={500}
               >
                 {pkg.listItems.map((item) => (
                   <ListItem key={item}>
@@ -100,22 +87,6 @@ function CombinedSlide({ packages, heading }: CombinedSlideProps) {
                   </ListItem>
                 ))}
               </List>
-              {showButton[index] && (
-                <Box w="80%" pt={7}>
-                  <Button
-                    w="full"
-                    colorScheme="teal"
-                    variant="outline"
-                    onClick={() =>
-                      setExpandedPackage(
-                        expandedPackage === index ? null : index
-                      )
-                    }
-                  >
-                    {expandedPackage === index ? "Show Less" : "Show More"}
-                  </Button>
-                </Box>
-              )}
             </VStack>
           </Box>
         ))}

@@ -33,7 +33,7 @@ export default function RootLayout({
           <Box height="93px" />
           <DynamicTopHeader />
           {children}
-          <DynamicNavbar />
+          {/* <DynamicNavbar /> */}
           <DynamicSlideSection />
           <DynamicOurServiceSection />
           <DynamicGallerySection />

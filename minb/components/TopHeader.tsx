@@ -11,6 +11,8 @@ import {
   chakra,
   useMediaQuery,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+
 import {
   FaClock,
   FaEnvelope,
@@ -21,6 +23,9 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { keyframes } from "@emotion/react";
+import { useTranslation } from "react-i18next";
+import { Button } from "@chakra-ui/react";
+import { i18nInit } from "./i18n";
 
 const pulse = keyframes`
   from { transform: scale(1); }
@@ -73,7 +78,7 @@ export default function TopHeader() {
 
       <TopHeaderCenter>
         <Flex direction={isLargerThan768 ? "row" : "column"}>
-          <TopHeaderHStack spacing={5} mx={15} color={"black"}>
+          <TopHeaderHStack spacing={5} mx={15}>
             <Icon as={FaEnvelope} />
             <Link href="mailto:minhkelly.trinh@gmail.com">
               <Text color={"black"}>minhkelly.trinh@gmail.com</Text>

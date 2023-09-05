@@ -13,6 +13,7 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const FooterBox = chakra(Box, {
   baseStyle: {
@@ -67,6 +68,9 @@ const FooterIconBox = chakra(Box, {
 });
 
 export default function Footer() {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "Homepage",
+  });
   return (
     <FooterBox id="#footer">
       <FooterFlex flexDir={{ base: "column", md: "row" }}>
@@ -83,15 +87,12 @@ export default function Footer() {
         </FooterContentBox>{" "}
         {/* About Us */}
         <FooterContentBox order={{ base: 1, md: 2 }}>
-          <FooterHeading id="footer">About us </FooterHeading>
+          <FooterHeading id="footer">{t("About us")}</FooterHeading>
 
           <FooterText>
-            MinT + là một tổ hợp bao gồm MinT Kafe’ & Club bao trọn không gian
-            tầng 1, MinT Beauty Academy dành cho khách hàng phun xăm và làm đẹp
-            spa . Minh tạo ra MinT+ với mong muốn rằng mọi người khi tới có thể
-            cùng với những chuyên gia mới, nơi bạn có thể làm đẹp, có thể nghỉ
-            ngơi, có thể chill, thậm chí có thể thức tới sáng cùng mình nơi với
-            tất cả tâm huyết của mình, xây một cách chậm dãi, từ tốn, vững chắc.
+            {t(
+              "MinT + is a complex including MinT Kafe' & Club covering the entire 1st floor space, MinT Beauty Academy for tattoo spray and spa beauty customers. Minh created MinT + with the desire that when people come together with new experts, where you can beautify, rest, chill, even stay up late with me with all my heart, build slowly, carefully, firmly."
+            )}
           </FooterText>
           <Flex justify="center">
             <a href="https://www.facebook.com/TrinhMinhBeautySpa">
